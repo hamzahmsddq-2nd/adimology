@@ -21,7 +21,8 @@ export async function GET(request: NextRequest) {
       .map(s => s.trim() === 'Mix' ? 'Retail / Bandar' : s.trim())
       .join(',');
 
-    const url = new URL('https://api.tradersaham.com/api/market-insight/broker-intelligence');
+    // FIX: Swapped out the old 'api.tradersaham.com' subdomain for the core apex service path
+    const url = new URL('https://www.tradersaham.com/api/market-insight/broker-intelligence');
     url.searchParams.set('limit', '100');
     url.searchParams.set('page', '1');
     url.searchParams.set('sort_by', 'consistency');
