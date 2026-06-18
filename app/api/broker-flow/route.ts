@@ -21,8 +21,8 @@ export async function GET(request: NextRequest) {
       .map(s => s.trim() === 'Mix' ? 'Retail / Bandar' : s.trim())
       .join(',');
 
-    // FIX: Swapped out the old 'api.tradersaham.com' subdomain for the core apex service path
-    const url = new URL('https://www.tradersaham.com/api/market-insight/broker-intelligence');
+    // FIX: Updated to the live endpoint path structure
+    const url = new URL('https://www.tradersaham.com/api/broker-intelligence');
     url.searchParams.set('limit', '100');
     url.searchParams.set('page', '1');
     url.searchParams.set('sort_by', 'consistency');
@@ -35,6 +35,7 @@ export async function GET(request: NextRequest) {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
       },
       cache: 'no-store',
     });
